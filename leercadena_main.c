@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include "leercadena.h"
+#include <stdlib.h>
 
 int main(int argc, char *argv[]) {
   char comando[BUFSIZ];
@@ -21,11 +22,12 @@ int main(int argc, char *argv[]) {
           	} else if (pid == 0) {
                 vector = de_cadena_a_vector(comando);
                 execvp(vector[0],vector);
+                exit(0);
           	} else {
                   wait(NULL);
           	}
         }else{
-			return 0;
+			exit(0);
         }
   }
 
